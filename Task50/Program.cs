@@ -55,4 +55,3 @@ int max = 10;
 int[,] matrix = CreateMatrix(row, col, max);
 PrintMatrix(matrix, row, col);
 SearchElement(matrix, yPosition, xPosition);
-
