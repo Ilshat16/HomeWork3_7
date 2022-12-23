@@ -5,21 +5,37 @@
 // 8 4 2 4
 // Среднее арифметическое каждого столбца: 4,6; 5,6; 3,6; 3.
 
-void CalculatingArithmeticMeanOfCols(int[,] matrix, int row, int col)
+// void CalculatingArithmeticMeanOfCols(int[,] matrix, int row, int col)
+// {
+//     Console.Write("Среднее арифметическое каждого столбца: ");
+//     for (int i = 0; i < row; i++)
+//     {
+//         double sum = 0;
+//         for (int j = 0; j < col; j++)
+//         {
+//             sum += matrix[j, i];
+//         }
+//         double arithmeticMean = sum / row;
+//         // Условие нужно чтобы в конце последовательности поставить точку.
+//         if (i == row - 1) Console.Write($"{arithmeticMean}. ");
+//         else Console.Write($"{arithmeticMean}; ");
+//     }
+// }
+void AverageColumns(int[,] array)
 {
-    Console.Write("Среднее арифметическое каждого столбца: ");
-    for (int i = 0; i < row; i++)
+    double[] average = new double[array.GetLength(1)];
+    for (int i = 0; i < array.GetLength(1); i++)
     {
-        double sum = 0;
-        for (int j = 0; j < col; j++)
+        for (int j = 0; j < array.GetLength(0); j++)
         {
-            sum += matrix[j, i];
+            if (j == array.GetLength(0) - 1)
+            {
+                average[i] = (average[i] + array[j, i]) / array.GetLength(0);
+            }
+            else average[i] = average[i] + array[j, i];
         }
-        double arithmeticMean = sum / row;
-        // Условие нужно чтобы в конце последовательности поставить точку.
-        if (i == row - 1) Console.Write($"{arithmeticMean}. ");
-        else Console.Write($"{arithmeticMean}; ");
     }
+    Console.WriteLine(string.Join("; ", average));
 }
 
 void PrintMatrix(int[,] matrix, int row, int col)
@@ -54,9 +70,10 @@ int EnterData(string text)
     return number;
 }
 
-int row = 5;
+int row = 3;
 int col = 5;
 int max = 10;
 int[,] matrix = CreateMatrix(row, col, max);
 PrintMatrix(matrix, row, col);
-CalculatingArithmeticMeanOfCols(matrix, row, col);
+// CalculatingArithmeticMeanOfCols(matrix, row, col);
+AverageColumns(matrix);
